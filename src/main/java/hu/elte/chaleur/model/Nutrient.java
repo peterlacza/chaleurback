@@ -19,7 +19,6 @@ public class Nutrient {
 
     private String name;
     private Boolean topSelect;
-    //@NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.LAZY)
     private Unit unit;
     private String code;

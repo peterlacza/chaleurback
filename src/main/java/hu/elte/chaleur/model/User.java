@@ -79,7 +79,7 @@ public class User {
 
     @ManyToMany(mappedBy = "following")
     @JsonIgnore
-    private List<User> followers;
+    private List<User> follower;
 
     public void addRole(String roleName) {
         if (this.roles == null || this.roles.isEmpty())

@@ -8,5 +8,4 @@ import java.util.List;
 
 public interface CategoryRepository extends CrudRepository<Category, Integer> {
     List<Category> findAll();
-    List<Category> findAllByCategoryType(CategoryType categoryType);
 }

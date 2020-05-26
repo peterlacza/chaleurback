@@ -23,11 +23,11 @@ public class DailyDifferentSpecification {
         );
     }
 
-    public static Specification<DailyDifferent> getLastDaysAndAverage(Integer days){
+    public static Specification<DailyDifferent> getLastNDays(Integer days){
         LocalDate lastDays = LocalDate.now().minusDays(days);
-        LocalDate today = LocalDate.now();
+        LocalDate yesterday = LocalDate.now().minusDays(1);
         return (root, query, criteriaBuilder) -> criteriaBuilder.and(
-                criteriaBuilder.between(root.get("date"), lastDays, today),
+                criteriaBuilder.between(root.get("date"), lastDays, yesterday),
                 criteriaBuilder.equal(root.get("average"), Boolean.FALSE)
         );
     }

@@ -26,7 +26,10 @@ public class AuthServiceImpl implements AuthService {
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.addRole("ADMIN");
-        return ResponseEntity.ok(userRepository.save(user));
+
+        ResponseEntity<User> response = ResponseEntity.ok(userRepository.save(user));
+
+        return response;
     }
 
 

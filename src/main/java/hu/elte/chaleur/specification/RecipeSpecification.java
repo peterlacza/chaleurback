@@ -20,7 +20,6 @@ public class RecipeSpecification {
         };
     }
 
-
     public static Specification<Recipe> findLatest(){
         return (root, query, criteriaBuilder) -> {
             Subquery<LocalDateTime> getLocalDates = query.subquery(LocalDateTime.class);

@@ -24,7 +24,6 @@ public class ConsumptionSpecification {
         return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("date"), actDate);
     }
 
-
     public static Specification<Consumption> getLastDays(Integer dayNumber){
         LocalDate today = LocalDate.now();
         LocalDate daysBefore = LocalDate.now().minusDays(dayNumber);

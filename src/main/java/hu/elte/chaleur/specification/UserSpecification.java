@@ -13,12 +13,12 @@ public class UserSpecification {
         };
     }
 
-    public static Specification<User> findMyFollowing(User user){
+    public static Specification<User> findMyFollowings(User user){
         return (root, query, criteriaBuilder) -> {
             if(user == null){
                 return criteriaBuilder.conjunction();
             }
-            return criteriaBuilder.equal(root.joinList("followers"), user);
+            return criteriaBuilder.equal(root.joinList("follower"), user);
         };
     }
 
