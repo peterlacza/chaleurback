@@ -1,7 +1,7 @@
 package hu.elte.chaleur.controller;
 
-import hu.elte.chaleur.efsa.EFSAEnergy;
-import hu.elte.chaleur.efsa.EFSAMineralVitamin;
+import hu.elte.chaleur.datastore.EFSAEnergy;
+import hu.elte.chaleur.datastore.EFSAMineralVitamin;
 import hu.elte.chaleur.model.ReferenceValue;
 import hu.elte.chaleur.model.User;
 import hu.elte.chaleur.repository.EFSAEnergyRepository;

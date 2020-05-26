@@ -1,4 +1,4 @@
-package hu.elte.chaleur.efsa;
+package hu.elte.chaleur.datastore;
 
 import hu.elte.chaleur.model.Unit;
 import lombok.AllArgsConstructor;
