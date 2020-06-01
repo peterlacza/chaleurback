@@ -1,6 +1,7 @@
 package hu.elte.chaleur.controller;
 
 import hu.elte.chaleur.model.User;
+import hu.elte.chaleur.service.ConsumptionService;
 import hu.elte.chaleur.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,13 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class UserController {
     private final UserService userService;
+    private final ConsumptionService consumptionService;
+
+    @GetMapping("/lefutok")
+    public String torolj() {
+        consumptionService.setAverageDailyDiff();
+        return "hello";
+    }
 
     @GetMapping(params = "userName")
     public User getUserProfile(String userName){

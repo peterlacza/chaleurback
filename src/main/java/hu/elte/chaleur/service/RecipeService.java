@@ -190,24 +190,45 @@ public class RecipeService {
             return u1.getRecipes().size() > u2.getRecipes().size() ? -1 : 1;
         });
 
+        Integer maxSize = 0;
+        if(users.size() > 10){
+            maxSize = 10;
+        } else{
+            maxSize = users.size();
+        }
         Integer deletedNumber = 0;
-        for(int i=0;i<10+deletedNumber;i++){
+        for(int i=0;i<maxSize+deletedNumber;i++){
             for(User following : myFollowings){
                 if(users.get(i).equals(following)){
                     users.remove(i);
-                    deletedNumber++;
+                    maxSize -= 1;
+                    if(maxSize + deletedNumber+1 < users.size()){
+                        deletedNumber++;
+                    }
                     break;
                 }
             }
         }
 
-        for(int i=0;i<10;i++){
-            if(users.get(i).equals(authService.getActUser())){
+        if(users.size() > 10){
+            maxSize = 10;
+        } else{
+            maxSize = users.size();
+        }
+        for(int i=0;i<maxSize;i++){
+            if(users.get(i).equals(authService.getActUser()) || users.get(i).getUsername().equals("peterlacza")){
                 users.remove(i);
+                maxSize -= 1;
             }
         }
 
-        return users.subList(0,10);
+        if(users.size() > 10){
+            maxSize = 10;
+        } else{
+            maxSize = users.size();
+        }
+
+        return users.subList(0,maxSize);
     }
 
     public List<Recipe> findFavouritesByUser(String userName){

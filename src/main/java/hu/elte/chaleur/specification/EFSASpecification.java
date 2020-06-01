@@ -1,7 +1,7 @@
 package hu.elte.chaleur.specification;
 
-import hu.elte.chaleur.datastore.EFSAEnergy;
-import hu.elte.chaleur.datastore.EFSAMineralVitamin;
+import hu.elte.chaleur.model.datastore.EFSAEnergy;
+import hu.elte.chaleur.model.datastore.EFSAMineralVitamin;
 import org.springframework.data.jpa.domain.Specification;
 
 public class EFSASpecification {

@@ -25,7 +25,7 @@ public class RecommendService {
 
     public List<Recipe> recommend(){
         //Kérem a saját referencia értékeimet
-        List<ReferenceValue> referenceValues =referenceValueRepository.findAllByUser(authService.getActUser());
+        List<ReferenceValue> referenceValues = referenceValueRepository.findAllByUser(authService.getActUser());
 
         //Készítünk egy listát a tápértékekről, alapértelmezetten minden nulla
         List<NutrientValue> dailyNutrientValues = new ArrayList<>();
@@ -53,22 +53,9 @@ public class RecommendService {
                 DailyDifferentSpecification.findLastAvarageByUser(authService.getActUser())
         )).get(0);
 
-        //Megnézzük, hogy hány napról szól a legutóbbi átlag
-        //List<DailyDifferent> dailyDifferents = dailyDifferentRepository.findAll(
-        //        Specification.where(DailyDifferentSpecification.findAllExceptAverage("springUser"))
-        //);
         Double lastDaysNumber = 3.0;
 
-
-        //TODO: Recepetek lekérése, majd szűrés bizonyos előfeltételek mentén
-        //if(VANBEÁLLÍTVADIÉTA){
-        //    List<Recipe> recipes = recipeRepository.findAll(Specification.where(
-        //            RecipeSpecification.findByCategoryValue(CategoryType.DIETA)
-        //                    .and(RecipeSpecification.findByCategoryValue(diet))
-        //    ));
-        //} else{
         List<Recipe> recipes = recipeRepository.findAll();
-        //}
 
         //Eltávolítjuk a listából azokat a recepteket, melyeket fogyasztott a user az utolsó néhány (3) napban.
         List<Consumption> lastDaysConsumptions = consumptionRepository.findAll(Specification.where(ConsumptionSpecification.getLastDays((int)Math.round(lastDaysNumber))));
@@ -128,7 +115,6 @@ public class RecommendService {
                             }
                             recipeCompare.setPositiveChange(recipeCompare.getPositiveChange() + changeValue);
                         }
-                        //System.err.println("["+ recipeNutrientValue.getNutrient().getName()+"]fejlodés: "+recipeCompare.getNegativeChange());
                         break;
                     }
                 }

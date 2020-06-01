@@ -26,7 +26,7 @@ public class Rating {
     private Recipe recipe;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"consumptions", "dailyDifferents", "password", "recipes", "referenceValues", "roles", "favourites" })
+    @JsonIgnoreProperties(value = {"consumptions", "dailyDifferents", "password", "recipes", "referenceValues", "roles", "favourites" }, allowSetters = true)
     private User user;
 
     @Min(1) @Max(5)

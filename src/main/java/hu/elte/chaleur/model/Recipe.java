@@ -26,11 +26,12 @@ public class Recipe {
     private LocalDateTime createdAt;
 
     private String name;
+    @Column(columnDefinition = "TEXT")
     private String description;
     @OneToOne(fetch = FetchType.LAZY)
     private Image picture;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"roles", "recipes", "consumptions", "referenceValues", "dailyDifferents"})
+    @JsonIgnoreProperties(value = {"roles", "recipes", "consumptions", "referenceValues", "dailyDifferents"}, allowSetters = true)
     private User owner;
     private Integer madeNumber;
     private Boolean isCategoryWinner;

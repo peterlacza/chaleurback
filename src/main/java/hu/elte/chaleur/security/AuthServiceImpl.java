@@ -2,6 +2,7 @@ package hu.elte.chaleur.security;
 
 import hu.elte.chaleur.model.User;
 import hu.elte.chaleur.repository.UserRepository;
+import hu.elte.chaleur.service.ReferenceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +18,7 @@ import java.util.Optional;
 public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final ReferenceService referenceService;
 
     @Override
     public ResponseEntity<User> register(User user) {
@@ -42,6 +44,9 @@ public class AuthServiceImpl implements AuthService {
             throw new UsernameNotFoundException(userName);
         }
         User actUser = oUser.get();
+        if(actUser.getReferenceValues().size() == 0){
+            referenceService.setNutrientsRef(actUser);
+        }
         return actUser;
     }
 }

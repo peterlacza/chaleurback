@@ -57,7 +57,7 @@ public class User {
     @JsonIgnore
     private List<Recipe> recipes;
 
-    @JsonIgnoreProperties({"owner"})
+    @JsonIgnoreProperties(value = {"owner"}, allowSetters = true)
     @OneToMany(fetch = FetchType.LAZY)
     private List<Recipe> favourites;
 

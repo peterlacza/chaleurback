@@ -34,7 +34,6 @@ public class ImageService {
 
         return image;
     }
-    // compress the image bytes before storing it in the database
     public static byte[] compressBytes(byte[] data) {
         Deflater deflater = new Deflater();
         deflater.setInput(data);
@@ -53,7 +52,6 @@ public class ImageService {
         return outputStream.toByteArray();
     }
 
-    // uncompress the image bytes before returning it to the angular application
     public static byte[] decompressBytes(byte[] data) {
         Inflater inflater = new Inflater();
         inflater.setInput(data);

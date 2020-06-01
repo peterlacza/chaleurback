@@ -16,6 +16,11 @@ public class DailyDifferentSpecification {
                 );
     }
 
+    public static Specification<DailyDifferent> findAll(User user){
+        return (root, query, criteriaBuilder) ->
+                criteriaBuilder.equal(root.get("user"), user);
+    }
+
     public static Specification<DailyDifferent> findAllExceptAverage(User user){
         return (root, query, criteriaBuilder) -> criteriaBuilder.and(
                     criteriaBuilder.equal(root.get("user"), user),

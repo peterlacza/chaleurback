@@ -27,7 +27,7 @@ public class CategoryController {
         return categoryService.getCategoryValuesByType(categoryType);
     }
 
-    @GetMapping("/maincategory")
+    @GetMapping()
     public List<CategoryHierarchy> getMainCategories(){
         return categoryService.getMainCategories();
     }
@@ -35,7 +35,6 @@ public class CategoryController {
     @GetMapping("/categorywinner")
     public Recipe getCategoryWinner(String subCategoryCode){
         return categoryService.getCategoryWinner(subCategoryCode);
-
     }
 
     @GetMapping("/{mainCategoryCode}")

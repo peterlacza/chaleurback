@@ -21,9 +21,6 @@ public class AuthController {
     public ResponseEntity<User> register(@RequestBody User user) {
 
         ResponseEntity<User> response = authService.register(user);
-        if(response.getStatusCode().is2xxSuccessful()){
-            referenceService.setNutrientsRef(userRepository.findByUsername(user.getUsername()).get());
-        }
         return response;
     }
 

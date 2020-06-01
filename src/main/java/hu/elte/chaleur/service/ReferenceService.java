@@ -1,14 +1,13 @@
 package hu.elte.chaleur.service;
 
-import hu.elte.chaleur.datastore.EFSAEnergy;
-import hu.elte.chaleur.datastore.EFSAMineralVitamin;
+import hu.elte.chaleur.model.datastore.EFSAEnergy;
+import hu.elte.chaleur.model.datastore.EFSAMineralVitamin;
 import hu.elte.chaleur.model.ReferenceValue;
 import hu.elte.chaleur.model.User;
 import hu.elte.chaleur.repository.EFSAEnergyRepository;
 import hu.elte.chaleur.repository.EFSAMineralVitaminRepository;
 import hu.elte.chaleur.repository.ReferenceValueRepository;
 import hu.elte.chaleur.repository.UnitRepository;
-import hu.elte.chaleur.security.AuthService;
 import hu.elte.chaleur.specification.EFSASpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
@@ -24,7 +23,6 @@ public class ReferenceService {
     private final EFSAEnergyRepository efsaEnergyRepository;
     private final UnitRepository unitRepository;
     private final ReferenceValueRepository referenceValueRepository;
-    private final AuthService authService;
 
     public List<ReferenceValue> setNutrientsRef(User user){
         List<EFSAMineralVitamin> efsaRefMV = efsaMineralVitaminRepository.findAll(Specification.where(
@@ -40,7 +38,7 @@ public class ReferenceService {
         List<ReferenceValue> userReferences = new ArrayList<>();
         for(EFSAMineralVitamin actNutrient : efsaRefMV){
             ReferenceValue userReference = new ReferenceValue();
-            userReference.setUser(authService.getActUser());
+            userReference.setUser(user);
             userReference.setUnit(actNutrient.getUnit());
             userReference.setNutrientCode(actNutrient.getCode());
 
@@ -76,8 +74,5 @@ public class ReferenceService {
         return userReferences;
     }
 
-    public List<ReferenceValue> getReference(){
-        return referenceValueRepository.findAllByUser(authService.getActUser());
-    }
 
 }

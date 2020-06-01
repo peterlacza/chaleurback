@@ -1,6 +1,6 @@
 package hu.elte.chaleur.repository;
 
-import hu.elte.chaleur.datastore.DishNationList;
+import hu.elte.chaleur.model.datastore.DishNationList;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

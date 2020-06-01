@@ -167,29 +167,6 @@ public class ConsumptionService {
         return ResponseEntity.ok(consumptionRepository.save(consumption));
     }
 
-    public List<NutrientValue> consumeRecipe(Integer recipeId, Double amount){
-        Recipe recipe = recipeRepository.findById(recipeId).get();
-        //-> bekerül a Consumption-be
-        Consumption myConsumption = new Consumption();
-        myConsumption.setDate(LocalDate.now());
-        myConsumption.setRecipe(recipe);
-        myConsumption.setAmount(amount);
-        myConsumption.setUser(authService.getActUser());
-
-        //-> az elfogyasztott étel (fél-adag, stb..) tápértékei megy a ConsumptionNutrient-be
-        List<NutrientValue> nutrientValues = new ArrayList<>();
-        for(NutrientValue actNutrient : recipe.getNutrientValues()){
-            NutrientValue nutrientValue = new NutrientValue();
-            nutrientValue.setNutrient(actNutrient.getNutrient());
-            nutrientValue.setValue(actNutrient.getValue()*amount);
-            nutrientValueRepository.save(nutrientValue);
-            nutrientValues.add(nutrientValue);
-        }
-        myConsumption.setNutrientValues(nutrientValues);
-        consumptionRepository.save(myConsumption);
-        return nutrientValues;
-    }
-
     public List<Consumption> getConsumptions(){
         return consumptionRepository.findAll(Specification.where(
                 ConsumptionSpecification.findByUser(authService.getActUser())

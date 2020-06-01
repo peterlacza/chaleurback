@@ -17,16 +17,9 @@ import java.util.List;
 public class ConsumptionController {
     private final ConsumptionService consumptionService;
 
-    //TODO: melyiket használjuk?
-    @PostMapping("/consumption")
+    @PostMapping("/add")
     public ResponseEntity<Consumption> addConsumption(@RequestBody Consumption consumption){
         return consumptionService.addConsumption(consumption);
-    }
-
-    //TODO: melyiket használjuk?
-    @GetMapping(params = {"recipeId", "amount"})
-    public List<NutrientValue> consumeRecipe(Integer recipeId, Double amount){
-        return consumptionService.consumeRecipe(recipeId, amount);
     }
 
     @GetMapping("/consumptions")
